@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SACRA名刺台帳</title>
+<meta name="apple-mobile-web-app-title" content="SACRA名刺台帳">
+<meta name="robots" content="noindex, nofollow">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:#f3f5f7;color:#18232e;text-align:center;padding:16px}
+  img{width:96px;height:96px}
+  a{color:#1f5d7a}
+</style>
+</head>
+<body>
+<div>
+  <img src="apple-touch-icon.png" alt="">
+  <p>SACRA名刺台帳を開いています…</p>
+  <p><a id="go" href="https://script.google.com/macros/s/AKfycbyhfe9WIyjU_Y8_M16b-fYN1kLAwCgdXlIRPAEzSmcU23jfKHGSJM6Kh8JpaZzUOiItOg/exec">開かないときはここを押してください</a></p>
+</div>
+<script>
+// ホーム画面のアイコン用の入口。開いたらすぐ名刺アプリへ移る
+setTimeout(function(){ location.replace(document.getElementById("go").href); }, 300);
+</script>
+</body>
+</html>

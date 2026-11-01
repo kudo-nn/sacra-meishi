@@ -2,29 +2,50 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SACRA名刺台帳</title>
 <meta name="apple-mobile-web-app-title" content="SACRA名刺台帳">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="robots" content="noindex, nofollow">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="manifest" href="manifest.webmanifest">
 <style>
+  :root{--bg:#f3f5f7;--ink:#18232e;--muted:#5d6b78;--sea:#1f5d7a;--card:#fff;--line:#d9e0e6}
+  @media (prefers-color-scheme:dark){:root{--bg:#10171d;--ink:#e6edf2;--muted:#9aa9b5;--sea:#7fb8d3;--card:#18222a;--line:#2b3843}}
   body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-    font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:#f3f5f7;color:#18232e;text-align:center;padding:16px}
-  img{width:96px;height:96px}
-  a{color:#1f5d7a}
+    font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);
+    padding:24px max(16px,env(safe-area-inset-left)) 24px max(16px,env(safe-area-inset-right));box-sizing:border-box}
+  .box{max-width:420px;width:100%;text-align:center}
+  img{width:112px;height:112px;border-radius:24px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+  h1{font-size:1.4rem;margin:14px 0 18px}
+  .go{display:block;background:var(--sea);color:#fff;text-decoration:none;font-weight:700;padding:14px;border-radius:12px;font-size:1.05rem}
+  .how{margin-top:22px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.92rem;line-height:1.7}
+  .how b{display:block;margin-bottom:4px}
+  .how ol{margin:0;padding-left:1.3em}
+  .muted{color:var(--muted);font-size:.82rem}
 </style>
 </head>
 <body>
-<div>
+<div class="box">
   <img src="apple-touch-icon.png" alt="">
-  <p>SACRA名刺台帳を開いています…</p>
-  <p><a id="go" href="https://script.google.com/macros/s/AKfycbyhfe9WIyjU_Y8_M16b-fYN1kLAwCgdXlIRPAEzSmcU23jfKHGSJM6Kh8JpaZzUOiItOg/exec">開かないときはここを押してください</a></p>
+  <h1>SACRA名刺台帳</h1>
+  <a class="go" id="go" href="https://script.google.com/macros/s/AKfycbyhfe9WIyjU_Y8_M16b-fYN1kLAwCgdXlIRPAEzSmcU23jfKHGSJM6Kh8JpaZzUOiItOg/exec">名刺台帳を開く</a>
+  <div class="how" id="how">
+    <b>ホーム画面にねこのアイコンを追加する</b>
+    <ol>
+      <li>このページのまま、Safari の共有ボタン（□に↑）を押す</li>
+      <li>「ホーム画面に追加」を押す</li>
+      <li>ねこのアイコンと「SACRA名刺台帳」を確かめて「追加」</li>
+    </ol>
+    <p class="muted">ホーム画面のアイコンから開くと、名刺台帳がすぐに開きます。</p>
+  </div>
 </div>
 <script>
-// ホーム画面のアイコン用の入口。開いたらすぐ名刺アプリへ移る
-setTimeout(function(){ location.replace(document.getElementById("go").href); }, 300);
+// ホーム画面のアイコンから開いたときだけ、すぐ名刺台帳へ移る（ブラウザで開いたときは追加しやすいよう、このページに留まる）
+var home = window.navigator.standalone === true || (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches);
+if (home) { document.getElementById("how").style.display = "none"; location.replace(document.getElementById("go").href); }
 </script>
 </body>
 </html>
